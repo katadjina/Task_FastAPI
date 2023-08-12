@@ -15,7 +15,7 @@ async def root():
 #rune the server -> command: uvicorn main:app --reload
 # open localhost or test on Postman by adding projets's local webserver port eg. localhost:8000
 
-todos = ["dodo", "test", "test2"]
+todos = []
 
 #get all notes
 @app.get("/todos")
@@ -27,4 +27,6 @@ async def get_todos():
 @app.post("/todos")
 #pass a todo item of a type ToDo(model)
 async def create_todos(todo: ToDo):
+    #add to the list 
+    todos.append(todo)
     return {"message": "ToDo has been added"}
