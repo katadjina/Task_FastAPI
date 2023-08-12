@@ -22,6 +22,14 @@ todos = []
 async def get_todos():
     return {"todos": todos}
 
+#get one
+@app.get("/todos/{todo_id}")
+async def get_todo(todo_id: int):
+    for item in todos:
+        if item.id == todo_id:
+            return {"todo" : item}
+    return {"message": "no todo found"}
+
 
 #create new with POST method
 @app.post("/todos")
@@ -30,3 +38,24 @@ async def create_todos(todo: ToDo):
     #add to the list 
     todos.append(todo)
     return {"message": "ToDo has been added"}
+
+#update  -> PUT method
+@app.put("/todos/{todo_id}")
+async def update_todo(todo_id: int, todo_obj: ToDo):
+    for item in todos:
+        if item.id == todo_id:
+            item.id = todo_obj.id
+            item.item = todo_obj.item    
+            return {"todo" : item}
+    return {"message": "no todo with this id has was found"}
+
+
+
+#delete one
+@app.delete("/todos/{todo_id}")
+async def delete_todo(todo_id: int):
+    for item in todos:
+        if item.id == todo_id:
+            todos.remove(item)
+            return {"message" : "Todo has been removed"}
+    return {"message": "no todo found"}
