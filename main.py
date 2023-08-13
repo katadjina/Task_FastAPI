@@ -10,7 +10,7 @@ app = FastAPI()
 #in fast api async is built in
 async def root():
     #returns json
-    return {"message": "Hello"}
+    return {"message": "Test"}
 
 #rune the server -> command: uvicorn main:app --reload
 # open localhost or test on Postman by adding projets's local webserver port eg. localhost:8000
