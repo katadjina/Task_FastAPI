@@ -59,3 +59,6 @@ async def delete_todo(todo_id: int):
             todos.remove(item)
             return {"message" : "Todo has been removed"}
     return {"message": "no todo found"}
+
+
+#swagger and reDoc built in -> in a browser: localhost:8000/docs (or redoc)
